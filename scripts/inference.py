@@ -112,6 +112,7 @@ def main():
     # inference
     # ======================================================
     # == load prompts ==
+    inference_start = time.perf_counter()
     prompts = cfg.get("prompt", None)
     start_idx = cfg.get("start_index", 0)
     if prompts is None:
@@ -293,10 +294,11 @@ def main():
                         verbose=verbose >= 2,
                     )
                     if save_path.endswith(".mp4") and cfg.get("watermark", False):
-                        time.sleep(1)  # prevent loading previous generated video
+                        # time.sleep(1)  # prevent loading previous generated video
                         add_watermark(save_path)
         start_idx += len(batch_prompts)
-    logger.info("Inference finished.")
+    inference_end = time.perf_counter()
+    logger.info(f"Inference finished, took {inference_end - inference_start}.")
     logger.info("Saved %s samples to %s", start_idx, save_dir)
 
 

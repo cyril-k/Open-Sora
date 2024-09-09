@@ -5,6 +5,8 @@ LABEL org.opencontainers.image.source = "https://github.com/hpcaitech/Open-Sora"
 LABEL org.opencontainers.image.licenses = "Apache License 2.0"
 LABEL org.opencontainers.image.base.name = "docker.io/library/hpcaitech/pytorch-cuda:2.1.0-12.1.0"
 
+ENV HF_HOME=/workspace/Open-Sora/huggingface
+
 # Set the working directory
 WORKDIR /workspace/Open-Sora
 # Copy the current directory contents into the container at /workspace/Open-Sora
